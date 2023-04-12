@@ -1,7 +1,7 @@
 # A unique social network: Connecting people through films and series
 ----
 
-## Criterai A: Planning
+## Criteria A: Planning
 ### Problem definition
 Films and series are a huge part of our life, especially in an era where common cable tv structure has moved to online distribution networks such as HBO GO, disney+ and Netflix. Despite the expansion that the visual entertainment industry has undergone, there is still a big problem. 
 
@@ -14,3 +14,14 @@ With this problem in mind an suitable solution for this problem is a unique soci
 ### Success criteria
 
 
+
+## Criteria B: Design Overview
+
+### System Diagram
+![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
+
+### Flow Diagrams
+
+### UML Diagrams
+
+### ER Diagram
