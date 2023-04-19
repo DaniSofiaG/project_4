@@ -9,7 +9,9 @@ There are over 200 streaming platforms but none of them has a space where users 
 
 ### Rationale for proposed solution
 With this problem in mind an suitable solution for this problem is a unique social network where users can post and comment under theand mess
+
 ### Design statement
+I will create a film social network for building connections and creating interactions between users based on their favorite films. The network will allow users to upload new titles, post their thoughts about those titles on their profile and comment on others posts. The social network will be created using python 3.8, flask, html, css and SQLite (database). It will take around 4 weeks to complete based on the success criteria.
 
 ### Success criteria
 
