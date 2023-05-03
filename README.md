@@ -68,6 +68,8 @@ def register():
         msg = "Register"
     return render_template("register.html", message=msg)""" (ADD PASWORD POLICY)```
 ```
+```.diff
+```
     
 ### Add films
 ```.py
@@ -93,6 +95,8 @@ def add_film(user_id: int):
             user = user[0]  # remember db.sear return a list
         return render_template("add_film.html", user=user, posts=posts)
 ```
+```.diff
+```
 
 ### Films 
 ```.py
@@ -108,6 +112,9 @@ def films(user_id: int):
         user = user[0]
     return render_template("films.html", user=user, films=films)
 ```
+```.diff
+```
+
 ### Films html
 ```.py
 <!DOCTYPE html>
@@ -148,6 +155,8 @@ def films(user_id: int):
 </body>
 </html>
 ```
+```.diff
+```
 
 ### Profile
 ```.py
@@ -173,6 +182,8 @@ def profile(user_id: int):
         user = user[0]  # remember db.sear return a list
     return render_template("profile.html", user=user, posts=posts, comments=comments)
 ```
+```.diff
+```
 
 ### Outsider Profile View: Commenting
 ```.py
@@ -194,5 +205,6 @@ def outsider_profile_view(user_id:int):
             return redirect(url_for('outsider_profile_view', user_id=user_id))
     return render_template('outsider_profile_view.html', user=user, posts=posts, posts_id=posts_id, comments=comments, user_id=user_id)
 ```
-  
+```.diff
+```
 
