@@ -49,3 +49,95 @@ I will create a film social network for building connections and creating intera
 - Connecting to a database
 
 ### Computational Thinking in Code
+
+#### Registration System
+```.py
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    msg = ''
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        hash = encrypt_password(password)
+        db = database_worker("social_net.db")
+        query = f"INSERT into users(email, password) values('{email}', '{hash}')"
+        db.run_save(query)
+        db.close()
+
+    else:
+        msg = "Register"
+    return render_template("register.html", message=msg)""" (ADD PASWORD POLICY)```
+```
+    
+### Add films
+```.py
+@app.route('/add_film/<user_id>', methods=['GET', 'POST'])
+def add_film(user_id: int):
+    db = database_worker("social_net.db")
+    posts = []
+    if request.method == 'POST':
+        title = request.form['title']
+        director = request.form['director']
+        image = request.form['image']
+        # save image on a folder of every user
+        if len(title) > 0 and len(director) > 0 and len(image) > 0:
+            new_film = f"INSERT into films(title, director, image, user_id) values ('{title}', '{director}', '{image}', '{user_id}')"
+            db.run_save(query=new_film)
+            return redirect(url_for('films', user_id=user_id))
+    else:
+        user, new_film = None, None
+        user = db.search(f"SELECT * from users where id = {user_id}")
+
+        if user:
+            posts = db.search(f"select * from films where user_id={user_id}")
+            user = user[0]  # remember db.sear return a list
+        return render_template("add_film.html", user=user, posts=posts)
+```
+    
+### Profile
+```.py
+@app.route('/users/<user_id>', methods=['GET', 'POST'])
+def profile(user_id: int):
+    db = database_worker("social_net.db")
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        if len(title) > 0 and len(content) > 0:
+            new_post = f"INSERT into posts (title, content, user_id) values('{title}','{content}',{user_id})"
+            db.run_save(query=new_post)
+            return redirect(url_for('profile', user_id=user_id))
+
+    user, posts, comments = None, None, None
+    user = db.search(f"SELECT * from users where id = {user_id}")
+    comments = db.search(f"SELECT * from comments where user_id = {user_id}")
+
+
+    if user:
+        posts = db.search(f"select * from posts where user_id={user_id}")
+        user = user[0]  # remember db.sear return a list
+    return render_template("profile.html", user=user, posts=posts, comments=comments)
+```
+
+### Outsider Profile View: Commenting
+```.py
+@app.route('/outsider_profile/<int:user_id>', methods=['GET', 'POST'])
+def outsider_profile_view(user_id:int):
+    db = database_worker("social_net.db")
+
+    user, posts, posts_id = None, None, None
+    user = db.search(f"SELECT * from users where id ={user_id}")
+    posts = db.search(f"SELECT * from posts where id = {user_id}")
+    posts_id = db.search(f"SELECT id from posts where user_id = {user_id}")
+    comments = db.search(f"SELECT * from comments where user_id = {user_id}")
+
+    if request.method == 'POST':
+        comment = request.form['comment']
+        if len(comment) > 0:
+            new_comment = f"INSERT into comments (comment, user_id) values('{comment}', {user_id})"
+            db.run_save(query=new_comment)
+            return redirect(url_for('outsider_profile_view', user_id=user_id))
+    return render_template('outsider_profile_view.html', user=user, posts=posts, posts_id=posts_id, comments=comments, user_id=user_id)
+```
+  
+
