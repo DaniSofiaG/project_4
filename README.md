@@ -23,7 +23,7 @@ I will create a film social network for building connections and creating intera
 
 5. ```[issue: none of them has a space where users can directly interact with each other through the movies they love or create conversation by replying to each other's thoughts]``` The website allows commenting (not posting) on others' posts. 
 
-6. ```[isue:they can't change what they've commented on before]``` The user can add new films and delete past ones.
+6. ```[isue:they can't change what they've commented on before]``` The user can add new films and they can also delete films.
 
 
 
