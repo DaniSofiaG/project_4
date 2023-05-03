@@ -47,3 +47,5 @@ I will create a film social network for building connections and creating intera
 - Variables
 - Functions
 - Connecting to a database
+
+### Computational Thinking in Code
