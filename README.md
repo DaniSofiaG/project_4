@@ -17,7 +17,7 @@ I will create a film social network for building connections and creating intera
 
 2. ```[issue: difficult to create direct interactions between users with such a large forum where all users post on the same page]``` The website has a page for each user's profile, where their posts are displayed.
 
-3. ```[issue: this has proven to be counterproductive since the pages tend to be disorganized]``` The website has a layout that makes organization simple and easy to understand for the users. 
+3. ```[issue: this has proven to be counterproductive since the pages tend to be disorganized]``` The website uses labels and a menu to guide the user thorugh the website.
 
 4. ```[issue: people can't keep track of their posts]``` The website displays all users' posts on their profile.
 
