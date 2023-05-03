@@ -144,11 +144,11 @@ def films(user_id: int):
 {% endif %}
 
 <input type="button" class="new_button" value="Add films!!!" onclick="location.href='{{ url_for("add_film",user_id=user[0])}}'">
-```
-
 
 </body>
 </html>
+```
+
 ### Profile
 ```.py
 @app.route('/users/<user_id>', methods=['GET', 'POST'])
