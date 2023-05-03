@@ -93,7 +93,62 @@ def add_film(user_id: int):
             user = user[0]  # remember db.sear return a list
         return render_template("add_film.html", user=user, posts=posts)
 ```
-    
+
+### Films 
+```.py
+@app.route('/films/<user_id>', methods=['GET', 'POST'])
+def films(user_id: int):
+    db = database_worker("social_net.db")
+
+    user, films = None, None
+    user = db.search(f"SELECT * from users where id = {user_id}")
+
+    if user:
+        films = db.search(f"SELECT * FROM films where user_id={user_id}")
+        user = user[0]
+    return render_template("films.html", user=user, films=films)
+```
+### Films html
+```.py
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% if user %}
+    <title>This are your films {{ user[1] }}</title>
+    {% else %}
+    <title>User does not exist</title>
+    {% endif %}
+    <link rel="stylesheet" href="/static/login_style.css">
+
+</head>
+<body>
+
+
+{% if user %}
+    <h1>This are your films {{ user[1] }}</h1>
+    <section>
+        {% if films %}
+            {% for film in films %}
+                <img class="img-flex" src="{{ film[3] }}" alt="{{ film[1] }}" onclick="location.href='{{ url_for("profile",user_id=user[0]) }}'">
+            {% endfor %}
+        {% else %}
+            <p>You don't have films yet!!!</p>
+        {% endif %}
+    </section>
+
+
+{% else %}
+    <p> You don't have films yet!</p>
+{% endif %}
+
+<input type="button" class="new_button" value="Add films!!!" onclick="location.href='{{ url_for("add_film",user_id=user[0])}}'">
+```
+
+
+</body>
+</html>
 ### Profile
 ```.py
 @app.route('/users/<user_id>', methods=['GET', 'POST'])
