@@ -42,8 +42,8 @@ I will create a film social network for building connections and creating intera
 ## Criteria C: Development
 
 ### List of techniques
-If statements
-Forloops
-Variables
-Functions
-Connecting to a database
+- If statements
+- Forloops
+- Variables
+- Functions
+- Connecting to a database
