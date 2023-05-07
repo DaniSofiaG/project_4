@@ -41,7 +41,7 @@ I will create a film social network for building connections and creating intera
 
 
 ### UML Diagrams
-![UML_diagram (1)](https://user-images.githubusercontent.com/111941990/236668701-874bfd37-c93f-4e18-b1d6-eae11bee5a3b.png)
+![UML_diagram (1)](https://user-images.githubusercontent.com/111941990/236668991-5f41e529-7940-46f1-be9a-39a3e996366a.png)
 
 
 ### ER Diagram
