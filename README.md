@@ -56,6 +56,7 @@ Fig _.
 - Functions
 - Connecting to a database
 - Arrays
+- OOP
 
 ### Computational Thinking in Code
 
