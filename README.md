@@ -37,7 +37,7 @@ I will create a film social network for building connections and creating intera
 
 ### Flow Diagrams
 ### Function for adding films: flow diagram
-![Copy of AddItem- Flow Diagram](https://user-images.githubusercontent.com/111941990/236665208-1af8f15e-2704-4012-8959-6e90ffb9c403.png)
+![Copy of AddItem- Flow Diagram (1)](https://user-images.githubusercontent.com/111941990/236665294-3927e529-8180-4c9f-8d3b-c0c4f298afa3.png)
 
 
 ### UML Diagrams
