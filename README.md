@@ -34,15 +34,15 @@ I will create a film social network for building connections and creating intera
 
 ### System Diagram
 ![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
-
+Fig 1.
 ### Flow Diagrams
 ### Function for adding films: flow diagram
 ![Copy of AddItem- Flow Diagram (1)](https://user-images.githubusercontent.com/111941990/236665294-3927e529-8180-4c9f-8d3b-c0c4f298afa3.png)
+Fig 2.
 
-
-### UML Diagrams
+### UML Diagram
 ![UML_diagram (2)](https://user-images.githubusercontent.com/111941990/236669020-328b2c55-cbbf-47b5-8602-b4a02f974aa1.png)
-
+Fig _.
 
 ### ER Diagram
 
