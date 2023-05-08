@@ -15,7 +15,7 @@ I will create a film social network for building connections and creating intera
 
 1. ```[issue: The client also doesn’t feel like most public forums make a good job protecting her personal data]``` The website has a secure registration system page with a password and email policy. The website has a login page where the user can log in to the network by using the information they previously registered.
 
-[2.](###Problem-definition) ```[issue: difficult to create direct interactions between users with such a large forum where all users post on the same page]``` The website has a page for each user's profile, where their posts are displayed.
+2. ```[issue: difficult to create direct interactions between users with such a large forum where all users post on the same page]``` The website has a page for each user's profile, where their posts are displayed.
 
 3. ```[issue: this has proven to be counterproductive since the pages tend to be disorganized]``` The website uses labels and a menu to guide the user thorugh the website.
 
