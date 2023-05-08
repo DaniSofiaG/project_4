@@ -36,10 +36,13 @@ I will create a film social network for building connections and creating intera
 ![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
 Fig 1.
 ### Flow Diagrams
-### Function for adding films: flow diagram
+### Function for adding films (add_films): flow diagram
 ![Copy of AddItem- Flow Diagram (1)](https://user-images.githubusercontent.com/111941990/236665294-3927e529-8180-4c9f-8d3b-c0c4f298afa3.png)
 Fig 2.
 
+### Function for commenting (outsider_profile_view): flow diagram
+![Outsider_profile_view- Flow Diagram](https://user-images.githubusercontent.com/111941990/236741084-f46af664-37f1-4ab9-89d9-74ecf1c077c0.png)
+Fig 3: A function that allows you to post comments on other user's profile without being able to edit anything else form their page
 ### UML Diagram
 ![UML_diagram (2)](https://user-images.githubusercontent.com/111941990/236669020-328b2c55-cbbf-47b5-8602-b4a02f974aa1.png)
 Fig _.
