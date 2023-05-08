@@ -109,10 +109,9 @@ def add_film(user_id: int):
             user = user[0]  # remember db.sear return a list
         return render_template("add_film.html", user=user, posts=posts)
 ```
-```.diff
+
 The add film route defines the function add_film(). First, the function connects to the “social_net.db” using the database_worker import from the programs library. Using the user_id the route takes the user to the “add_film” page, where they’ll find a form for inputting “title”, “director” and “image”. Then it declasers an empty array for pasts. The purpose of this function is to get 3 user inputs from the form when uploaded using the method ‘POST’ that was initially defined in the methods of the route, then if the the inputs are bigger than 0 in length they a query “new_film” to save them as strings into the table “films” of the “social_net.db” along with integer type input user_id is executed, and then the user is redirected to the “films” page. If the information submitted through ‘POST’ is not valid, the function will look for the user’s id and redirect them to their personal “add_films” page again.  The process of doing this part of the code was particularly challenging because the input for the image field was first intended to take a file type input instead of a text string and so it was saved into the database as the file name, this was a problem because the information on this database is used retrieved later in the program so that it can be displayed as an actual image for the user to see of the films page, because at first it was saved as a file name the program couldn’t display the images in the corresponding html, unless each was individually uploaded into the statics folder of the flask project. The problem was solved changing the input type to a stirring and requesting the use of a link as the input, instead of a file. The link is then saved to the database along with the other inputs as a string text, so later in the program it can be used in the ‘films’ function html as a source for an image and displays all newly uploaded images without needing to directly upload any files to the statics folder. 
 
-```
 
 ### Films 
 ```.py
