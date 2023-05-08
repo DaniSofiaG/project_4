@@ -41,7 +41,7 @@ Fig 1.
 Fig 2.
 
 ### Algorithm for commenting: flow diagram
-![Outsider_profile_view- Flow Diagram (1)](https://user-images.githubusercontent.com/111941990/236771754-09ab361d-fa73-494a-b56a-6e7e853b9728.png)
+![Outsider_profile_view- Flow Diagram (2)](https://user-images.githubusercontent.com/111941990/236772263-2c55c124-861d-4d53-9cdf-e469cf3ee884.png)
 
 Fig 3: A series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 ### UML Diagram
