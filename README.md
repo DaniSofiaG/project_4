@@ -36,14 +36,14 @@ I will create a film social network for building connections and creating intera
 ![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
 Fig 1.
 ### Flow Diagrams
-### Function for adding films (add_films): flow diagram
-![Copy of AddItem- Flow Diagram (1)](https://user-images.githubusercontent.com/111941990/236665294-3927e529-8180-4c9f-8d3b-c0c4f298afa3.png)
-Fig 2.
+### Algorithm for adding films: flow diagram
+![Add Film- Flow Diagram](https://user-images.githubusercontent.com/111941990/236772766-d3719b65-4242-43cf-9c09-544aba001649.png)
+Fig 2. A flow diagram for a series of steps that allows the program to take a user's iput and save it into a database, to be used i othe parts of the code.
 
 ### Algorithm for commenting: flow diagram
-![Outsider_profile_view- Flow Diagram (2)](https://user-images.githubusercontent.com/111941990/236772263-2c55c124-861d-4d53-9cdf-e469cf3ee884.png)
+![Outsider_profile_view- Flow Diagram (3)](https://user-images.githubusercontent.com/111941990/236772419-15b9be8e-7733-47a3-800a-56d61000af8b.png)
+Fig 3: A flow diagram for series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 
-Fig 3: A series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 ### UML Diagram
 ![UML_diagram (2)](https://user-images.githubusercontent.com/111941990/236669020-328b2c55-cbbf-47b5-8602-b4a02f974aa1.png)
 Fig _.
