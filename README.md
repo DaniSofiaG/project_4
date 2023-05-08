@@ -127,8 +127,7 @@ def films(user_id: int):
         user = user[0]
     return render_template("films.html", user=user, films=films)
 ```
-```.diff
-```
+The films route defines the function “films”. First, the function connects to the “social_net.db” using the database_worker import from the programs library and sets user, and films to value “None” in case the query that is later in the code, then it defines user as a query to search for the user_id of the user that is in using the webpage. If the program doesn’t find the user in the database it can return “None”, instead of launching an error. Then if the database finds a user, the “films” query is defined as all data in the “films” table of the “social_net.db” database and the user is set to user[0].It sets user to be user[0] because in the table ‘films’ in the database the user identification number (user_id) is in the column 0 of the table. There were not many direct challenges from this section of the code, except for those from the corresponding html, which were solved indirectly when working on the “add_films” function previously explained.
 
 ### Films html
 ```.py
