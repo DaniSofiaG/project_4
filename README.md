@@ -50,6 +50,9 @@ Fig 3: A flow diagram for series of steps that allow the user input text to crea
 ![UML_diagram (3)](https://user-images.githubusercontent.com/111941990/236962983-2aac0f47-1c3c-4a37-b88e-6eb2cfc69da4.png)
 Fig _.
 
+### ER Diagram 
+![Copy of Er diagram](https://github.com/DaniSofiaG/project_4/assets/111941990/2aaaac87-ff02-4121-aba3-7fa20caec358)
+Fig_. This an entity-relationship diagram, it illustrateds the relationships between data in the programs database, in this case "social_ned.db".
 ## Test Plan
 |    |                    Description of the Test                   |     Type     |                                                                  Test Steps                                                                 |                                                                                                              Planned Output                                                                                                             |
 |----|:------------------------------------------------------------:|:------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
