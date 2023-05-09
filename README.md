@@ -165,6 +165,7 @@ def films(user_id: int):
 ```
 The films route defines the function “films”. First, the function connects to the “social_net.db” using the database_worker import from the programs library and sets user, and films to value “None” in case the query that is later in the code, then it defines user as a query to search for the user_id of the user that is in using the webpage. If the program doesn’t find the user in the database it can return “None”, instead of launching an error. Then if the database finds a user, the “films” query is defined as all data in the “films” table of the “social_net.db” database and the user is set to user[0].It sets user to be user[0] because in the table ‘films’ in the database the user identification number (user_id) is in the column 0 of the table. There were not many direct challenges from this section of the code, except for those from the corresponding html, which were solved indirectly when working on the “add_films” function previously explained.
 
+## Films HTML and CSS
 ### Films html
 ```.html
 <!DOCTYPE html>
@@ -205,8 +206,6 @@ The films route defines the function “films”. First, the function connects t
 </body>
 </html>
 ```
-The HTML code first uses an if statement to ensure that each user only sees their own uploaded data, specifically the images that they added through the "add_film" function. If the if statement finds no user in the database, the "film" function (previously explained) will display the message "User does not exist." Next, a section of buttons is displayed, which allows the user to navigate to various pages of the website. The if statement is then closed. Following this, a new if statement is opened with the title "These are your films." Using a for loop, the code searches the "film" table's third column in the database where links to images are stored when a user adds a film, then it closes the for loop. Using that for loop, all the links corresponding to user’s uploaded images are taken as image sources for the image input, and then they are displayed as images in a row. Additionally, an "on-click" action makes all the images clickable, allowing the user to navigate to their personal profile page. Through CSS, the image input uses a class to create a flexible box display that animates the film images when hovered over. If the users film inputs were none then it would simply say “You don’t have films yet!!” and end the if statement. Using the flex display, despite not being a complicated element to create, if made figuring out how to make images functional buttons challenging, thesis is because the animation put on the flex display in the css would stop working if a href link or direction was put wrapping the for loop or inside the image input. The “on-click” action was used to solve the problem. “On-click” made the button creation process for efficient as it didn't require much alteration to the html or code to work, rather it used the name of the html page to direct the user and it used the already defined “user_id=user” input to take each user only to their corresponding profile page. 
-
 ### CSS for films
 ```.css
 section{
@@ -230,6 +229,9 @@ section img:hover {
     opacity: 1;
     filter: contrast(120%);
 }
+```
+The css and html for films create a image interactive display page for each individual user. The HTML code first uses an if statement to ensure that each user only sees their own uploaded data, specifically the images that they added through the "add_film" function. If the if statement finds no user in the database, the "film" function (previously explained) will display the message "User does not exist." Next, a section of buttons is displayed, which allows the user to navigate to various pages of the website. The if statement is then closed. Following this, a new if statement is opened with the title "These are your films." Using a for loop, the code searches the "film" table's third column in the database where links to images are stored when a user adds a film, then it closes the for loop. Using that for loop, all the links corresponding to user’s uploaded images are taken as image sources for the image input, and then they are displayed as images in a row. Additionally, an "on-click" action makes all the images clickable, allowing the user to navigate to their personal profile page. Through CSS, the image input uses a class to create a flexible box display that animates the film images when hovered over. If the users film inputs were none then it would simply say “You don’t have films yet!!” and end the if statement. Using the flex display, despite not being a complicated element to create, if made figuring out how to make images functional buttons challenging, thesis is because the animation put on the flex display in the css would stop working if a href link or direction was put wrapping the for loop or inside the image input. The “on-click” action was used to solve the problem. “On-click” made the button creation process for efficient as it didn't require much alteration to the html or code to work, rather it used the name of the html page to direct the user and it used the already defined “user_id=user” input to take each user only to their corresponding profile page. 
+
 ```
 
 ### Profile
