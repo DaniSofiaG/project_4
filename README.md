@@ -114,7 +114,10 @@ Fig 5. This an entity-relationship diagram, it illustrateds the relationships be
 - If statements
 - Forloops
 - Variables
+- CSS Styling
+- Html
 - Functions
+- 
 - Connecting to a database
 - Arrays
 - OOP
@@ -286,7 +289,7 @@ The outsider profile page created through the profile route is in essence a copy
 ## Criterion E: Evaluation
 
 # Appendix
-### Client-Developer communication
+### Client Consultation 
 <img width="996" alt="Screen Shot 2023-05-10 at 6 22 38" src="https://github.com/DaniSofiaG/project_4/assets/111941990/998852b3-8514-460c-890c-42324a6f307e">
 <img width="998" alt="Screen Shot 2023-05-10 at 6 22 45" src="https://github.com/DaniSofiaG/project_4/assets/111941990/fc15f216-eb58-4286-bbad-95346e18a1ad">
 <img width="994" alt="Screen Shot 2023-05-10 at 6 22 49" src="https://github.com/DaniSofiaG/project_4/assets/111941990/f189681e-4716-452a-a6bd-2863fb896882">
@@ -295,6 +298,8 @@ The outsider profile page created through the profile route is in essence a copy
 <img width="958" alt="Screen Shot 2023-05-10 at 6 23 06" src="https://github.com/DaniSofiaG/project_4/assets/111941990/2313bd0a-2df7-465e-aca2-6e1401436642">
 <img width="989" alt="Screen Shot 2023-05-10 at 6 23 11" src="https://github.com/DaniSofiaG/project_4/assets/111941990/1d34268f-b9e2-4be7-a094-217108b92ef0">
 <img width="984" alt="Screen Shot 2023-05-10 at 6 23 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/631f2571-4500-4b3f-bd47-86403d9af7d4">
+
+### Client Interview Summanry
 
 
 
