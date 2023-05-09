@@ -117,7 +117,6 @@ Fig 5. This an entity-relationship diagram, it illustrateds the relationships be
 - CSS Styling
 - Html
 - Functions
-- 
 - Connecting to a database
 - Arrays
 - OOP
