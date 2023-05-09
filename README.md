@@ -13,7 +13,8 @@ Based on this problem, an adequate solution would be a specialized platform wher
 ### Design statement
 I will create a film social network for building connections and creating interactions between users based on their favorite films. The network will allow users to upload new titles, post their thoughts about those titles on their profile and comment on others posts. The social network will be created using python 3.8, flask, html, css and SQLite (database). It will take around 4 weeks to complete based on the success criteria.
 
-### Success criteria
+### Success criteria 
+[Approved by client](#Appendix)
 
 1. ```[issue: The client also doesn’t feel like most public forums make a good job protecting her personal data]``` The website has a secure registration system page with a password and email policy. The website has a login page where the user can log in to the network by using the information they previously registered.
 
