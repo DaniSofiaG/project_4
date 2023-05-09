@@ -45,7 +45,7 @@ Fig 2. A flow diagram for a series of steps that allows the program to take a us
 Fig 3: A flow diagram for series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 
 ### UML Diagram
-![UML_diagram (2)](https://user-images.githubusercontent.com/111941990/236669020-328b2c55-cbbf-47b5-8602-b4a02f974aa1.png)
+![UML_diagram (3)](https://user-images.githubusercontent.com/111941990/236962983-2aac0f47-1c3c-4a37-b88e-6eb2cfc69da4.png)
 Fig _.
 
 
