@@ -36,11 +36,12 @@ I will create a film social network for building connections and creating intera
 ![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
 Fig 1.
 ### Flow Diagrams
-### Algorithm for adding films: flow diagram
+### Algorithm for uploading information: flow diagram
 ![Add Film- Flow Diagram](https://user-images.githubusercontent.com/111941990/236772766-d3719b65-4242-43cf-9c09-544aba001649.png)
-Fig 2. A flow diagram for a series of steps that allows the program to take a user's iput and save it into a database, to be used i othe parts of the code.
+Fig 2. A flow diagram for a series of steps that allows the program to take a user's iput and save it into a database, to be used i othe parts of the code. This particualr flow diagram takes the add_film code as an example to show case the alogorithm, which is also used as in the app.route for profile to upload different inputs to the database.
 
-### Algorithm for commenting: flow diagram
+### Algorithm for commenting: flow diagram. 
+
 ![Outsider_profile_view- Flow Diagram (3)](https://user-images.githubusercontent.com/111941990/236772419-15b9be8e-7733-47a3-800a-56d61000af8b.png)
 Fig 3: A flow diagram for series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 
@@ -232,8 +233,6 @@ section img:hover {
 ```
 The css and html for films create a image interactive display page for each individual user. The HTML code first uses an if statement to ensure that each user only sees their own uploaded data, specifically the images that they added through the "add_film" function. If the if statement finds no user in the database, the "film" function (previously explained) will display the message "User does not exist." Next, a section of buttons is displayed, which allows the user to navigate to various pages of the website. The if statement is then closed. Following this, a new if statement is opened with the title "These are your films." Using a for loop, the code searches the "film" table's third column in the database where links to images are stored when a user adds a film, then it closes the for loop. Using that for loop, all the links corresponding to user’s uploaded images are taken as image sources for the image input, and then they are displayed as images in a row. Additionally, an "on-click" action makes all the images clickable, allowing the user to navigate to their personal profile page. Through CSS, the image input uses a class to create a flexible box display that animates the film images when hovered over. If the users film inputs were none then it would simply say “You don’t have films yet!!” and end the if statement. Using the flex display, despite not being a complicated element to create, if made figuring out how to make images functional buttons challenging, thesis is because the animation put on the flex display in the css would stop working if a href link or direction was put wrapping the for loop or inside the image input. The “on-click” action was used to solve the problem. “On-click” made the button creation process for efficient as it didn't require much alteration to the html or code to work, rather it used the name of the html page to direct the user and it used the already defined “user_id=user” input to take each user only to their corresponding profile page. 
 
-```
-
 ### Profile
 ```.py
 @app.route('/users/<user_id>', methods=['GET', 'POST'])
@@ -258,8 +257,8 @@ def profile(user_id: int):
         user = user[0]  # remember db.sear return a list
     return render_template("profile.html", user=user, posts=posts, comments=comments)
 ```
-```.diff
-```
+When directed to their personal profile page from the clickable image display in the film html using the and “profile” and user_id on-click the route takes the user to the “profile” page, where they’ll find another form for inputting “title” and “content”. The purpose of this function is to get 2 user inputs from the form when uploaded using the method ‘POST’ that was initially defined in the methods of the route, then, if the the inputs are bigger than 0 in length a different query “posts” is executed to upload the “title” and “content” data to de “social_net.db” table for “posts” and its is saved along the user_id as integer, and then the user is redirected to the updated “profile” page with the new posts on it. If the information submitted through ‘POST’ is not valid, the function will look for the user’s id and redirect them to their personal “add_films” page again.  Then the profile defines user, posts and comments as “None” in case the program can’t find anything in the database for the user_id it doesn’t create an error and the profile can simply show no inputs. It sets users and comments to search whatever corresponds to the user logged-in in their corresponding tables. If a user is found for both posts and comments, then they are displayed in the profile page, the posts in a table format and the comments in a scrollable container. At first the profile page would only display the posts and the form to add them, however as part of the development and based on the client meetings its was important to have a way to connect users and so instead of having a comment section on a completely different section of the site, it was decided that it would be displayed on the profile page. 
+
 
 ### Outsider Profile View: Commenting
 ```.py
@@ -281,6 +280,6 @@ def outsider_profile_view(user_id:int):
             return redirect(url_for('outsider_profile_view', user_id=user_id))
     return render_template('outsider_profile_view.html', user=user, posts=posts, posts_id=posts_id, comments=comments, user_id=user_id)
 ```
-```.diff
-```
+The outsider profile page created through the profile route is in essence a copy of the profile page as its purpose is to show all  content on the profile page, without allowing external users to edit the user’s profile posts, but having a seduction for them to create and upload comments to other user’s profile, which promotes interaction with others, tackling the user’s problems. First, the outsider_profile_view function connects to the “social_net.db” using the database_worker import from the programs library. Then it defines the user, posts, posts_id and comments are defined as database searches where user_id is the same as th euser_id of the logged-in user, they all retrieve all data from their corresponding tables,except for post_id that retrieved on the id from the “posts” table. Like the add_film and profile functions of this program, the second part of the outsider_porfile_view uses the same methods to retrieve information from comment text field using the method ‘POST’ that was initially defined in the methods of the route, then if the the input is bigger than 0 in length then a query “new_comment” is executed to save them as strings into the table “comments” of the “social_net.db” along with integer type input user_id executed, and then the user is redirected to the updated “outside_profile_viewr” page. The outsider profile view was one of the most challenging parts of the code, since its developments started became unorganized due to issues in data migration when the computer in which the site was being built became broke and so there was an incomplete data transfer of a part of the code, that made the development process confusing and unorganized. To overcome the issues with data migration the outsider_profiel_view was completely erased and built from scratch again. 
+
 
