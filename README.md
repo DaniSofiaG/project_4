@@ -101,27 +101,6 @@ Fig _.
 
 ### Computational Thinking in Code
 
-#### Registration System
-```.py
-@app.route('/register', methods=["GET", "POST"])
-def register():
-    msg = ''
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        hash = encrypt_password(password)
-        db = database_worker("social_net.db")
-        query = f"INSERT into users(email, password) values('{email}', '{hash}')"
-        db.run_save(query)
-        db.close()
-
-    else:
-        msg = "Register"
-    return render_template("register.html", message=msg)""" (ADD PASWORD POLICY)```
-```
-```.diff
-```
-    
 ### Add films
 ```.py
 @app.route('/add_film/<user_id>', methods=['GET', 'POST'])
