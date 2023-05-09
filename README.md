@@ -277,4 +277,27 @@ def outsider_profile_view(user_id:int):
 ```
 The outsider profile page created through the profile route is in essence a copy of the profile page as its purpose is to show all  content on the profile page, without allowing external users to edit the user’s profile posts, but having a seduction for them to create and upload comments to other user’s profile, which promotes interaction with others, tackling the user’s problems. First, the outsider_profile_view function connects to the “social_net.db” using the database_worker import from the programs library. Then it defines the user, posts, posts_id and comments are defined as database searches where user_id is the same as th euser_id of the logged-in user, they all retrieve all data from their corresponding tables,except for post_id that retrieved on the id from the “posts” table. Like the add_film and profile functions of this program, the second part of the outsider_porfile_view uses the same methods to retrieve information from comment text field using the method ‘POST’ that was initially defined in the methods of the route, then if the the input is bigger than 0 in length then a query “new_comment” is executed to save them as strings into the table “comments” of the “social_net.db” along with integer type input user_id executed, and then the user is redirected to the updated “outside_profile_viewr” page. The outsider profile view was one of the most challenging parts of the code, since its developments started became unorganized due to issues in data migration when the computer in which the site was being built became broke and so there was an incomplete data transfer of a part of the code, that made the development process confusing and unorganized. To overcome the issues with data migration the outsider_profiel_view was completely erased and built from scratch again. 
 
+## Criterion D: Functionality and Extensibility
+
+## Criterion E: Evaluation
+
+## Appendix
+### Client-Developer communication
+<img width="996" alt="Screen Shot 2023-05-10 at 6 22 38" src="https://github.com/DaniSofiaG/project_4/assets/111941990/998852b3-8514-460c-890c-42324a6f307e">
+<img width="998" alt="Screen Shot 2023-05-10 at 6 22 45" src="https://github.com/DaniSofiaG/project_4/assets/111941990/fc15f216-eb58-4286-bbad-95346e18a1ad">
+<img width="994" alt="Screen Shot 2023-05-10 at 6 22 49" src="https://github.com/DaniSofiaG/project_4/assets/111941990/f189681e-4716-452a-a6bd-2863fb896882">
+<img width="975" alt="Screen Shot 2023-05-10 at 6 22 54" src="https://github.com/DaniSofiaG/project_4/assets/111941990/386a06f7-59ae-4e75-8630-931520a9b111">
+<img width="968" alt="Screen Shot 2023-05-10 at 6 23 00" src="https://github.com/DaniSofiaG/project_4/assets/111941990/629a51ba-8f33-44d4-9c16-79bfcbca2ef4">
+<img width="958" alt="Screen Shot 2023-05-10 at 6 23 06" src="https://github.com/DaniSofiaG/project_4/assets/111941990/2313bd0a-2df7-465e-aca2-6e1401436642">
+<img width="989" alt="Screen Shot 2023-05-10 at 6 23 11" src="https://github.com/DaniSofiaG/project_4/assets/111941990/1d34268f-b9e2-4be7-a094-217108b92ef0">
+<img width="984" alt="Screen Shot 2023-05-10 at 6 23 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/631f2571-4500-4b3f-bd47-86403d9af7d4">
+
+
+
+
+
+
+
+### Client consultation
+
 
