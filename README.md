@@ -34,8 +34,8 @@ I will create a film social network for building connections and creating intera
 ## Criteria B: Design Overview
 
 ### System Diagram
-![Copy of Project_3 system diagram](https://user-images.githubusercontent.com/111941990/231610635-36f3f27d-747a-4670-8ca9-4e08d1621306.png)
-Fig 1.
+![Project_3 system diagram (1)](https://github.com/DaniSofiaG/project_4/assets/111941990/9577b1df-0c9c-4dc9-9f87-5041519ed9bd)
+Fig 1. System diagram for the 
 ### Flow Diagrams
 ### Algorithm for uploading information: flow diagram
 ![Add Film- Flow Diagram](https://user-images.githubusercontent.com/111941990/236772766-d3719b65-4242-43cf-9c09-544aba001649.png)
@@ -47,7 +47,7 @@ Fig 2. A flow diagram for a series of steps that allows the program to take a us
 Fig 3: A flow diagram for series of steps that allow the user input text to create and save a comment in the database, to then display it in the selected user's profile.
 
 ### UML Diagram
-![UML_diagram (3)](https://user-images.githubusercontent.com/111941990/236962983-2aac0f47-1c3c-4a37-b88e-6eb2cfc69da4.png)
+![UML_diagram (4)](https://github.com/DaniSofiaG/project_4/assets/111941990/e18e581a-abef-4db6-b386-a97b01e575f8)
 Fig 4. A diagram taht visually represents the main classes of a program.
 
 ### ER Diagram 
