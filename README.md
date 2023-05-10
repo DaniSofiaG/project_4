@@ -121,7 +121,6 @@ Fig 6. The wirefram diagram is a design of the social networ and the patways bet
 |    40   |                                 Evaluation: Client product evaluation                                 |                                                                Client evaluating the product based on client requirements and feedback                                                               |     15 min    |  May 9  |     E     |
 |    41   |                              Evaluation: External user product evaluation                             |                                                            External user evaluation the product based on client requirements and feedback                                                            |     15 min    |  May 9  |     E     |
 |    42   |                                     Functionality: Video recording                                    |                                                                             Record video on functionality of the program                                                                             |     20 min    |  May 10 |     D     |
-### ER Diagram
 
 
 ## Criteria C: Development
@@ -300,6 +299,8 @@ def outsider_profile_view(user_id:int):
 The outsider profile page created through the profile route is in essence a copy of the profile page as its purpose is to show all  content on the profile page, without allowing external users to edit the user’s profile posts, but having a seduction for them to create and upload comments to other user’s profile, which promotes interaction with others, tackling the user’s problems. First, the outsider_profile_view function connects to the “social_net.db” using the database_worker import from the programs library. Then it defines the user, posts, posts_id and comments are defined as database searches where user_id is the same as th euser_id of the logged-in user, they all retrieve all data from their corresponding tables,except for post_id that retrieved on the id from the “posts” table. Like the add_film and profile functions of this program, the second part of the outsider_porfile_view uses the same methods to retrieve information from comment text field using the method ‘POST’ that was initially defined in the methods of the route, then if the the input is bigger than 0 in length then a query “new_comment” is executed to save them as strings into the table “comments” of the “social_net.db” along with integer type input user_id executed, and then the user is redirected to the updated “outside_profile_viewr” page. The outsider profile view was one of the most challenging parts of the code, since its developments started became unorganized due to issues in data migration when the computer in which the site was being built became broke and so there was an incomplete data transfer of a part of the code, that made the development process confusing and unorganized. To overcome the issues with data migration the outsider_profiel_view was completely erased and built from scratch again. 
 
 ## Criterion D: Functionality and Extensibility
+## Video 
+[Final video in google drive folder. Click here!](https://drive.google.com/file/d/1CpLUQaChj8YunbUf_ItNV3U05e0CUcvU/view?usp=sharing)
 
 ## Criterion E: Evaluation
 ### User evaluation
