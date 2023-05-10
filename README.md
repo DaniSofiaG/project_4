@@ -313,6 +313,10 @@ The outsider profile page created through the profile route is in essence a copy
 | none of them has a space where users can directly interact with each other through the movies they love or create conversation by replying to each other's thoughts |                                                                          The website allows commenting (not posting) on others' posts.                                                                         |     Achieved     |
 |                  this has proven to be counterproductive since the pages tend to be disorganized, they have visuals like images all over the place                  |                                                                   The Website has an individual display of the movies inserted by each user.                                                                   |     Achieved     |
 
+
+### Client Interview Summary and Feedback from tesitings
+<img width="890" alt="Screen Shot 2023-05-11 at 0 04 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/4fe631d2-48a8-4fef-9d23-20773b25d17d">
+
 # Appendix
 ### Client Consultation 
 <img width="996" alt="Screen Shot 2023-05-10 at 6 22 38" src="https://github.com/DaniSofiaG/project_4/assets/111941990/998852b3-8514-460c-890c-42324a6f307e">
@@ -324,7 +328,6 @@ The outsider profile page created through the profile route is in essence a copy
 <img width="989" alt="Screen Shot 2023-05-10 at 6 23 11" src="https://github.com/DaniSofiaG/project_4/assets/111941990/1d34268f-b9e2-4be7-a094-217108b92ef0">
 <img width="984" alt="Screen Shot 2023-05-10 at 6 23 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/631f2571-4500-4b3f-bd47-86403d9af7d4">
 
-### Client Interview Summanry
 
 
 
@@ -332,6 +335,5 @@ The outsider profile page created through the profile route is in essence a copy
 
 
 
-### Client consultation
 
 
