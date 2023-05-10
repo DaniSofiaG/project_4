@@ -53,6 +53,10 @@ Fig 4. A diagram taht visually represents the main classes of a program.
 ### ER Diagram 
 ![Copy of Er diagram](https://github.com/DaniSofiaG/project_4/assets/111941990/2aaaac87-ff02-4121-aba3-7fa20caec358)
 Fig 5. This an entity-relationship diagram, it illustrateds the relationships between data in the programs database, in this case "social_ned.db".
+
+### Wirefram diagram
+![Copy of Wireframe diagram (1)](https://github.com/DaniSofiaG/project_4/assets/111941990/9cd93bf9-bb6c-40a4-8c52-56609ada0d8f)
+Fig 6. The wirefram diagram is a design of the social networ and the patways between the different paes.
 ## Test Plan
 |    |                    Description of the Test                   |     Type     |                                                                  Test Steps                                                                 |                                                                                                              Planned Output                                                                                                             |
 |----|:------------------------------------------------------------:|:------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
