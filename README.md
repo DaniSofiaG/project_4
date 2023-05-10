@@ -300,7 +300,7 @@ The outsider profile page created through the profile route is in essence a copy
 
 ## Criterion D: Functionality and Extensibility
 ## Video 
-[Final video in google drive folder. Click here!](https://drive.google.com/file/d/1CpLUQaChj8YunbUf_ItNV3U05e0CUcvU/view?usp=sharing)
+[Final video in google drive folder. Click here!](https://drive.google.com/file/d/1eHyY75uNjSFsCWz3CsEsMLT_lq9J1j8b/view?usp=sharing)
 
 ## Criterion E: Evaluation
 ### User evaluation
