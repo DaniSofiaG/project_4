@@ -1,6 +1,6 @@
 # A unique social network: Connecting people through films and series
 ----
-http://127.0.0.1:5000/
+![How Georges Méliès’ films are still influencing cinema, more than 100 years later](https://github.com/DaniSofiaG/project_4/assets/111941990/55c1a693-9a05-45ec-936c-9b6c0340f303)
 
 
 ## Criteria A: Planning
