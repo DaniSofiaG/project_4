@@ -332,12 +332,667 @@ Testing client feedback: For the furutre having a way for deleting posts and mov
 <img width="989" alt="Screen Shot 2023-05-10 at 6 23 11" src="https://github.com/DaniSofiaG/project_4/assets/111941990/1d34268f-b9e2-4be7-a094-217108b92ef0">
 <img width="984" alt="Screen Shot 2023-05-10 at 6 23 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/631f2571-4500-4b3f-bd47-86403d9af7d4">
 
+# Code
+## app.py
+```.py
+from flask import Flask, render_template, request, redirect, url_for, make_response
+from my_lib import database_worker, encrypt_password, check_password
+
+app = Flask(__name__)
+
+
+def create_database():
+    db = database_worker("social_net.db")
+    query_user = """CREATE table if not exists users(
+        id INTEGER PRIMARY KEY,
+        email TEXT,
+        password TEST
+    )
+    """
+    query_post = """CREATE table if not exists posts(
+        id INTEGER PRIMARY KEY,
+        title VARCHAR(100),
+        content TEXT,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(id) on delete cascade
+        )
+    """
+    query_films = """CREATE table if not exists films(
+        id INTEGER PRIMARY KEY,
+        title TEXT,
+        director TEXT,
+        image TEXT,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(id) on delete cascade
+        ) 
+    """
+
+    query_comments = """CREATE table if not exists comments(
+        id INTEGER PRIMARY KEY,
+        comment TEXT,
+        user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(id) on delete cascade
+        ) 
+    """
+    db.run_save(query_user)
+    db.run_save(query_post)
+    db.run_save(query_films)
+    db.run_save(query_comments)
+
+    db.close()
+
+
+@app.route('/films/<user_id>', methods=['GET', 'POST'])
+def films(user_id: int):
+    db = database_worker("social_net.db")
+
+    user, films = None, None
+    user = db.search(f"SELECT * from users where id = {user_id}")
+
+    if user:
+        films = db.search(f"SELECT * FROM films where user_id={user_id}")
+        user = user[0]
+    return render_template("films.html", user=user, films=films)
+
+
+@app.route('/film_post/<user_id>')
+def film_post(user_id: int):
+    db = database_worker("social_net.db")
+    return redirect(url_for('films', user_id=user_id))
+
+@app.route('/add_film/<user_id>', methods=['GET', 'POST'])
+def add_film(user_id: int):
+    db = database_worker("social_net.db")
+    posts = []
+    if request.method == 'POST':
+        title = request.form['title']
+        director = request.form['director']
+        image = request.form['image']
+        # save image on a folder of every user
+        if len(title) > 0 and len(director) > 0 and len(image) > 0:
+            new_film = f"INSERT into films(title, director, image, user_id) values ('{title}', '{director}', '{image}', '{user_id}')"
+            db.run_save(query=new_film)
+            return redirect(url_for('films', user_id=user_id))
+    else:
+        user = db.search(f"SELECT * from users where id = '{user_id}'")
+        return render_template("add_film.html", user=user, posts=posts)
+
+    user = db.search(f"SELECT * from users where id = '{user_id}'")
+    return render_template("add_film.html", user=user, posts=posts)
+
+
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    msg = ''
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # PASSWORD POLICY
+        # Check password length
+        if len(password) < 5:
+            msg = "Password should be at least 5 characters long."
+        # Check if email contains "@"
+        elif "@" not in email:
+            msg = "Invalid email address."
+        else:
+            hash = encrypt_password(password)
+            db = database_worker("social_net.db")
+            query = f"INSERT into users(email, password) values('{email}', '{hash}')"
+            db.run_save(query)
+            db.close()
+            return render_template("home.html", message=msg)
+
+    else:
+        msg = "Register"
+    return render_template("register.html", message=msg)
 
 
 
 
 
 
+
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    msg = ""
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        db = database_worker("social_net.db")
+        user = db.search(f"SELECT * from users where email = '{email}'")
+        if user:
+            user = user[0]
+            id, email, hashed = user
+            if check_password(hashed_password=hashed, user_password=password):
+                # Reminder!!: Instead of just rendering the template, make sure that the URL is like this format
+                url_films = f"/films/{id}"
+                response = make_response(render_template('films.html', user=id))
+                response.set_cookie('user_id', f"{id}")  # cookie is a string
+                return redirect(url_films)
+            else:
+                msg = "Invalid email or password"
+        else:
+            msg = "Invalid email or password"
+    return render_template("login.html", message=msg)
+
+@app.route('/logout')
+def logout():
+    response = make_response(redirect('login'))
+    response.set_cookie('user_id', "", expires=0)
+    return response
+
+
+@app.route('/outsider_profile/<user_id>', methods=['GET', 'POST'])
+def outsider_profile_view(user_id: int):
+    db = database_worker("social_net.db")
+
+    user = db.search(f"SELECT * from users where id ='{user_id}'")
+    posts = db.search(f"SELECT * from posts where id = '{user_id}'")
+    posts_id = db.search(f"SELECT id from posts where user_id = '{user_id}'")
+    comments = db.search(f"SELECT * from comments where user_id = '{user_id}'")
+
+    if request.method == 'POST':
+        comment = request.form['comment']
+        if len(comment) > 0:
+            new_comment = f"INSERT into comments (comment, user_id) values('{comment}', {user_id})"
+            db.run_save(query=new_comment)
+            return redirect(url_for('outsider_profile_view', user_id=user_id))
+    return render_template('outsider_profile_view.html', user=user, posts=posts, posts_id=posts_id, comments=comments,user_id=user_id)
+
+
+@app.route('/users/<user_id>', methods=['GET', 'POST'])
+def profile(user_id: int):
+    db = database_worker("social_net.db")
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        if len(title) > 0 and len(content) > 0:
+            new_post = f"INSERT into posts (title, content, user_id) values('{title}','{content}',{user_id})"
+            db.run_save(query=new_post)
+            return redirect(url_for('profile', user_id=user_id))
+
+    user, posts, comments = None, None, None
+    user = db.search(f"SELECT * from users where id = {user_id}")
+    comments = db.search(f"SELECT * from comments where user_id = {user_id}")
+
+    if user:
+        posts = db.search(f"select * from posts where user_id={user_id}")
+        user = user[0]  # remember db.sear return a list
+    return render_template("profile.html", user=user, posts=posts, comments=comments)
+
+
+@app.route('/index')
+def index():  # put application's code here
+    return render_template("index.html")
+
+
+
+@app.route('/users')
+def users():  # put application's code here
+    # get all the users and show them in the webpage
+
+    db = database_worker("social_net.db")
+    users = db.search("SELECT * FROM users")
+    db.close()
+    return render_template("user.html", users=users)
+
+
+@app.route('/about')
+def about():  # put application's code here
+    return render_template("about.html")
+
+@app.route('/menu/<user_id>', methods=['GET', 'POST'])
+def menu(user_id: int):
+    db = database_worker("social_net.db")
+    user = db.search(f"SELECT * from users where id ='{user_id}'")[0]
+
+    return render_template("menu.html", user=user)
+
+@app.route("/", methods=["GET", "POST"])
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+create_database()
+if __name__ == '__main__':
+    app.run()
+```
+
+
+## User html
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/table.css">
+
+<input type="button" value="Menu" onclick="location.href='{{ url_for("home")}}'">
+<input type="button" value="Log out" onclick="location.href='{{ url_for("login")}}'">
+</head>
+<body>
+<h1 class="blue-title">Users in the database</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>email</th>
+        <th>Profile</th>
+    </tr>
+    {% for u in users %}
+
+    <tr>
+        <td>{{ u[0] }}</td> {# id #}
+        <td>{{ u[1] }}</td> {# email #}
+        <td><button onclick="location.href='{{ url_for("outsider_profile_view", user_id=u[0])}}'">View Profile</button></td>
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+```
+
+## Register html
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the best SNS</title>
+    <link rel="stylesheet" href="/static/base_style.css">
+
+</head>
+<body class="background">
+<h2 class="title">Register</h2>
+
+    {% if message %}
+    <div class="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <form class="container" method="post">
+        <div>
+        <label for="">Email</label>
+        <input type="email" name="email">
+    </div>
+    <div>
+        <label for ="">Password</label>
+        <input type="password" name="password">
+
+    </div>
+    <div>
+        <input type="submit" name="" value="Register">
+        <input type="button" value="Log in" onclick="location.href='{{ url_for("login")}}'">
+
+    </div>
+    </form>
+    <video autoplay="" loop="" playsinline="" preload="auto" src="file:///Users/danisofi/films/Babylon%20(2022)%20-%20The%20Ending%20Montage%20Scene%20_%20Movieclips%20(2).mp4" muted=""></video>
+
+</body>
+</html>
+```
+
+## login html
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the best SNS</title>
+    <link rel="stylesheet" href="/static/base_style.css">
+
+
+</head>
+<body class="background">
+<h2 class="title">Login</h2>
+
+    <form class= container method="post">
+        <div>
+        <label for="">Email</label>
+        <input type="email" name="email">
+    </div>
+    <div>
+        <label for ="">Password</label>
+        <input type="password" name="password">
+
+    </div>
+    <div>
+        <input type="submit" name="" value="Log In">
+    </div>
+    </form>
+
+
+</body>
+</html>
+```
+
+## add.film
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/base_style.css">
+    <meta charset="UTF-8">
+    <input type="button" value="Menu" onclick="location.href='{{ url_for("home")}}'">
++
+    {% if user %}
+    <title class="title">Add films {{ user[1] }}</title>
+    {% else %}
+    <title>User does not exist</title>
+    {% endif %}
+
+
+</head>
+<body class="background">
+
+
+{% if user %}
+    <h2 class="title">Add Film</h2>
+        <form class = container method="post" enctype="multipart/form-data">
+            <p>Enter Title<input type="text" name="title" placeholder="title"></p>
+            <p>Director<input type="text" name="director" placeholder="director"></p>
+            <p>Image<input type="text" name="image" placeholder="image link" /></p>
+            <input type="submit" value="post">
+        </form>
+{% endif %}
+
+
+</body>
+</html>
+```
+## films html
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% if user %}
+    <title>This are your films {{ user[1] }}</title>
+    {% else %}
+    <title>User does not exist</title>
+    {% endif %}
+    <link rel="stylesheet" href="/static/login_style.css">
+
+
+<input type="button" value="Menu" onclick="location.href='{{ url_for("menu", user_id=user[0])}}'">
+<input type="button" value="My films" onclick="location.href='{{ url_for("films",user_id=user[0])}}'">
+<input type="button" value="All Users" onclick="location.href='{{ url_for("users")}}'">
+<input type="button" value="Log out" onclick="location.href='{{ url_for("login")}}'">
+</head>
+<body>
+
+
+{% if user %}
+    <h1>This are your films {{ user[1] }}</h1>
+    <section>
+        {% if films %}
+            {% for film in films %}
+                <img class="img-flex" src="{{ film[3] }}" alt="{{ film[1] }}" onclick="location.href='{{ url_for("profile",user_id=user[0]) }}'">
+            {% endfor %}
+        {% else %}
+            <p>You don't have films yet!!!</p>
+        {% endif %}
+    </section>
+
+
+{% else %}
+    <p> You don't have films yet!</p>
+{% endif %}
+
+<input type="button" class="new_button" value="Add films!!!" onclick="location.href='{{ url_for("add_film",user_id=user[0])}}'">
+
+
+
+</body>
+</html>
+```
+
+## Profile html
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% if user %}
+    <title>Welcome, {{ user [1] }}</title>
+    {% else %}
+    <title>User does not exist</title>
+    {% endif %}
+    <link rel="stylesheet" href="/static/post_style.css">
+
+<input type="button" value="Menu" onclick="location.href='{{ url_for("menu", user_id=user[0])}}'">
+
+</head>
+<body>
+
+{% if user %}
+    <h1 class="header">Welcome!</h1>
+    {% if posts|length > 0== 0 %}
+    <p class="header">What do you think of:</p>
+        <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        {% for p in posts %}
+        <tr>
+            <td>{{ p[1] }}</td> {# title #}
+            <td class="content">{{ p[2] }}</td> {# content #}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p> You don't have posts yet!</p>
+    {% endif %}
+    <h2>Create a new post for </h2>
+    <form method="post" enctype="multipart/form-data">
+        <p>Film Title<input type="text" name="title" placeholder="film title"></p>
+        <p>Content<input type="text" name="content" placeholder="content"></p>
+        <input type="submit" value="post">
+
+    </form>
+
+    {% else %}
+    <h1>User does not exist</h1>
+{% endif %}
+
+<h2>Comments</h2>
+<div class="comments">
+    {% for comment in comments %}
+        <p class="comments">{{ comment[1] }}</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
+```
+
+## Outsider profile view
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% if user %}
+    <title>Welcome to {{ user [1] }} profile!</title>
+    {% else %}
+    <title>User does not exist</title>
+    {% endif %}
+    <link rel="stylesheet" href="/static/post_style.css">
+
+<input type="button" value="Menu" onclick="location.href='{{ url_for("menu", user_id=user_id[0])}}'">
+
+
+</head>
+<body>
+
+{% if user %}
+    <h1 class="header">Welcome to {{ user[1] }}' profile</h1>
+    {% if posts|length > 0== 0 %}
+    <p>What do you think of:</p>
+        <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        {% for p in posts %}
+        <tr>
+            <td>{{ p[1] }}</td> {# title #}
+            <td class="content">{{ p[2] }}</td> {# content #}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p> {{ user[1] }} doesn't have posts yet!</p>
+    {% endif %}
+
+    </form>
+
+    {% else %}
+    <h1>User does not exist</h1>
+{% endif %}
+
+<h2>Leave a Comment</h2>
+<form method="post">
+    <label for="comment">Comment:</label>
+    <textarea id="comment" name="comment"></textarea>
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Comments</h2>
+<div class="comments">
+    {% for comment in comments %}
+        <p>{{ comment[1] }}</p>
+    {% endfor %}
+</div>
+
+
+
+</body>
+</html>
+```
+
+## CSS for films (login_style)
+```.html
+
+section{
+    display:flex;
+    width: 1380px;
+    height: 430px;
+
+}
+
+.img-flex{
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: 0.5s ease;
+}
+
+section img:hover {
+    cursor: pointer;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+
+.button-with-icon {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button-with-icon__label {
+    margin-left: 0.5rem;
+}
+
+.avatar {
+    /* Rounded border */
+    border-radius: 50%;
+
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Size */
+    height: 4rem;
+    width: 4rem;
+}
+
+.avatar__image {
+    /* Size */
+    height: 50%;
+    width: 50%;
+}
+
+.new_button{
+    --b: 3px;
+    --s: .45em;
+    --color: #373B44;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 16px;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+```
+
+## base_style css
+```.html
+.background {
+  background-color: black;
+}
+
+.container {
+  width: 400px;
+  position: center;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-family: Monaco;
+
+}
+
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+
+.title {
+  font-size: 78px;
+  font-weight: bold;
+  font-family: Impact;
+  color: #fff;
+  margin: 0;
+}
+```
 
 
 
