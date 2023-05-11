@@ -974,8 +974,8 @@ section img:hover {
 
 }
 
-/* Style inputs, select elements and textareas */
-input[type=text], select, textarea{
+
+.textarea{
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
