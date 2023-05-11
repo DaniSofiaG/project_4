@@ -883,7 +883,7 @@ if __name__ == '__main__':
 ```
 
 ## CSS for films (login_style)
-```.html
+```.css
 
 section{
     display:flex;
@@ -959,7 +959,7 @@ section img:hover {
 ```
 
 ## base_style css
-```.html
+```.css
 .background {
   background-color: black;
 }
