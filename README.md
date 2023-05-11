@@ -316,6 +316,10 @@ The outsider profile page created through the profile route is in essence a copy
 
 ### Client Interview Summary and Feedback from tesitings
 <img width="890" alt="Screen Shot 2023-05-11 at 0 04 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/4fe631d2-48a8-4fef-9d23-20773b25d17d">
+#### Feedback
+Testing user 1 feedback: It would be good if the menu on top of the pages was more consistent, instead of having different buttion for different pages.
+
+Testing client feedback: For the furutre having a way for deleting posts and movies to further increase the userst capacity to edit their own pages.
 
 # Appendix
 ### Client Consultation 
