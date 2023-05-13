@@ -74,7 +74,7 @@ Fig 6. The wirefram diagram is a design of the social networ and the patways bet
 | 11 |                 Access to each user's profile                |     Unti testing    |                                             1. Click on another user's username on the "All Users" table                                              |                                                      User's can access a view only form of each other's profiles where they can't edit or create posts, but they can add comments.                                                      |
 | 12 |                            Log out                           |     Unti testing    |                                                      1. Click the "Log Out" button on the website                                                     | Users can log out from their account. If someone who hasn't logged in tries to access any of the pages in the social network, though URL trying to avoid login and registration, they will automatically be returned to the login page. |
 | 13 |                     Interface navigation                     | Integration testing |  1. WIthout previous instruction take the user to the initial page and allow them to navigate the website iwthout any further instruction or guidance |                                                                           Users can quckly undrstand the interface of the website and learn how to navigate it                                                                          |
-
+In addtion to conducting testing based on the testing plan, a final round of user acceptance testing will be conducted with the client and an additional user to assure the program meets the user and client expectations.
 
 ## Recorded Tasks
 | Task No |                                             Planned Action                                            |                                                                                            Planned Outcome                                                                                           | Time estimate |   Date  | Criterion |
@@ -316,10 +316,12 @@ The outsider profile page created through the profile route is in essence a copy
 
 ### Client Interview Summary and Feedback from tesitings
 <img width="890" alt="Screen Shot 2023-05-11 at 0 04 16" src="https://github.com/DaniSofiaG/project_4/assets/111941990/4fe631d2-48a8-4fef-9d23-20773b25d17d">
-#### Feedback
-Testing user 1 feedback: It would be good if the menu on top of the pages was more consistent, instead of having different buttion for different pages.
 
-Testing client feedback: For the furutre having a way for deleting posts and movies to further increase the userst capacity to edit their own pages.
+
+#### Feedback
+Testing user 1 feedback: The program meets my expectations. It would be good if the menu on top of the pages was more consistent, instead of having different buttion for different pages.
+
+Testing client feedback: The program meets my expectations. For the furutre having a way for deleting posts and movies to further increase the userst capacity to edit their own pages.
 
 # Appendix
 ### Client Consultation 
